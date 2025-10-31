@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,10 +9,8 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <ThemeProvider>
         <AuthProvider>
-          <NavigationContainer>
-            <AppNavigator />
-            <StatusBar style='auto' />
-          </NavigationContainer>
+          <AppNavigator />
+          <StatusBar style='auto' />
         </AuthProvider>
       </ThemeProvider>
     </SafeAreaProvider>
