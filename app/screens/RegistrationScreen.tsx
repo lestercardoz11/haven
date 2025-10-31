@@ -39,6 +39,7 @@ export const RegistrationScreen = ({ navigation }: any) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreeAge, setAgreeAge] = useState(false);
+  const [isChristian, setIsChristian] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const passwordStrength = getPasswordStrength(formData.password);
@@ -84,6 +85,11 @@ export const RegistrationScreen = ({ navigation }: any) => {
       return;
     }
 
+    if (!isChristian) {
+      Alert.alert('Error', 'You must be a Christian to join Haven');
+      return;
+    }
+
     if (!agreeTerms) {
       Alert.alert('Error', 'Please agree to the Terms & Privacy Policy');
       return;
@@ -98,6 +104,8 @@ export const RegistrationScreen = ({ navigation }: any) => {
         phone: formData.phone,
         date_of_birth: formData.date_of_birth.toISOString().split('T')[0],
         gender: formData.gender,
+        marriage_intent_verified: agreeAge,
+        is_christian_verified: isChristian,
       });
       // Navigation will be handled by AuthContext
     } catch (error: any) {
@@ -411,6 +419,28 @@ export const RegistrationScreen = ({ navigation }: any) => {
               </View>
               <Text style={[styles.checkboxText, { color: theme.colors.text }]}>
                 I am 21+ and seeking marriage.
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.checkbox}
+              onPress={() => setIsChristian(!isChristian)}>
+              <View
+                style={[
+                  styles.checkboxBox,
+                  {
+                    backgroundColor: isChristian
+                      ? theme.colors.primary
+                      : 'transparent',
+                    borderColor: theme.colors.border,
+                  },
+                ]}>
+                {isChristian && (
+                  <Ionicons name='checkmark' size={16} color='#ffffff' />
+                )}
+              </View>
+              <Text style={[styles.checkboxText, { color: theme.colors.text }]}>
+                I am a Christian.
               </Text>
             </TouchableOpacity>
 

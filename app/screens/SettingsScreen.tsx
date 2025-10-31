@@ -18,7 +18,7 @@ export const SettingsScreen = ({ navigation }: any) => {
   const { theme, themeMode, toggleTheme } = useTheme();
   const { user, signOut } = useAuth();
 
-  const [notifications, setNotifications] = useState({
+  const [notifications] = useState({
     matches: true,
     messages: true,
     interests: true,

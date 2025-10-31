@@ -1,5 +1,11 @@
 // src/context/AuthContext.tsx
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { authService } from '../services/auth.service';
 import type { User } from '../types/user.types';
 
@@ -38,9 +44,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return () => {
       authListener?.subscription.unsubscribe();
     };
-  }, []);
+  }, [checkUser]);
 
-  const checkUser = async () => {
+  const checkUser = useCallback(async () => {
     try {
       const { data: session } = await authService.getSession();
       if (session) {
@@ -51,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const loadUser = async () => {
     const result = await authService.getCurrentUser();

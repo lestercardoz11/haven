@@ -15,7 +15,7 @@ import { useProfile } from '../hooks/useProfile';
 
 export const ProfileScreen = ({ navigation }: any) => {
   const { theme } = useTheme();
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const { stats } = useProfile(user!.id);
 
   return (

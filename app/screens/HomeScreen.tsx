@@ -1,6 +1,6 @@
 // src/screens/HomeScreen.tsx
 import { Ionicons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -27,9 +27,9 @@ export const HomeScreen = ({ navigation }: any) => {
 
   useEffect(() => {
     loadMatches();
-  }, []);
+  }, [loadMatches]);
 
-  const loadMatches = async () => {
+  const loadMatches = useCallback(async () => {
     try {
       setLoading(true);
       const result = await matchingService.getPotentialMatches(user!.id);
@@ -41,7 +41,7 @@ export const HomeScreen = ({ navigation }: any) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   const handlePass = async () => {
     if (matches.length === 0) return;

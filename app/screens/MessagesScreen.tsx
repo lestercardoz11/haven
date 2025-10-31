@@ -1,6 +1,6 @@
 // src/screens/MessagesScreen.tsx (Simplified version)
 import { Ionicons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -25,9 +25,9 @@ export const MessagesScreen = ({ navigation }: any) => {
 
   useEffect(() => {
     loadConversations();
-  }, []);
+  }, [loadConversations]);
 
-  const loadConversations = async () => {
+  const loadConversations = useCallback(async () => {
     try {
       setLoading(true);
       const result = await messagingService.getConversations(user!.id);
@@ -37,7 +37,7 @@ export const MessagesScreen = ({ navigation }: any) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   const renderConversation = ({ item }: { item: Conversation }) => {
     const otherUser = item.other_participant!;

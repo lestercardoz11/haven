@@ -93,6 +93,8 @@ class MatchingService {
         .select('*')
         .eq('is_active', true)
         .eq('verification_status', 'verified')
+        .eq('is_christian_verified', true)
+        .eq('marriage_intent_verified', true)
         .neq('id', userId)
         .neq('gender', currentUser.gender); // Opposite gender
 
@@ -286,10 +288,8 @@ class MatchingService {
    */
   private async createMatch(user1Id: string, user2Id: string): Promise<void> {
     // Create conversation
-    const { data: conversation } = await supabase
-      .from('conversations')
-      .insert({
-        participant_1_id: user1Id,
+    await supabase.from('conversations').insert({
+      participant_1_id: user1Id,
         participant_2_id: user2Id,
       })
       .select()

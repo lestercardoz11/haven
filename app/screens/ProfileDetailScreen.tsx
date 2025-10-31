@@ -1,6 +1,6 @@
 // src/screens/ProfileDetailScreen.tsx
 import { Ionicons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Dimensions,
   Image,
@@ -14,8 +14,6 @@ import { useTheme } from '../context/ThemeContext';
 import { profileService } from '../services/profile.service';
 import { User } from '../types/user.types';
 
-const { width } = Dimensions.get('window');
-
 export const ProfileDetailScreen = ({ route, navigation }: any) => {
   const { userId } = route.params;
   const { theme } = useTheme();
@@ -23,14 +21,14 @@ export const ProfileDetailScreen = ({ route, navigation }: any) => {
 
   useEffect(() => {
     loadProfile();
-  }, []);
+  }, [loadProfile]);
 
-  const loadProfile = async () => {
+  const loadProfile = useCallback(async () => {
     const result = await profileService.getProfile(userId);
     if (result.success && result.data) {
       setProfile(result.data);
     }
-  };
+  }, [userId]);
 
   if (!profile) return null;
 
