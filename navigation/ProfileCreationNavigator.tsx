@@ -1,14 +1,14 @@
 // src/navigation/ProfileCreationNavigator.tsx
+import { OnboardingScreen } from '@/app/screens/OnboardingScreen';
+import { BasicInformationScreen } from '@/app/screens/ProfileCreation/BasicInformationScreen';
+import { FaithProfileScreen } from '@/app/screens/ProfileCreation/FaithProfileScreen';
+import { PartnerPreferencesScreen } from '@/app/screens/ProfileCreation/PartnerPreferencesScreen';
+import { PersonalDetailsScreen } from '@/app/screens/ProfileCreation/PersonalDetailsScreen';
+import { VerificationUploadScreen } from '@/app/screens/ProfileCreation/VerificationUploadScreen';
+import { VerificationPendingScreen } from '@/app/screens/VerificationPendingScreen';
+import type { ProfileCreationStackParamList } from '@/types/navigation.types';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { OnboardingScreen } from '../screens/OnboardingScreen';
-import { BasicInformationScreen } from '../screens/ProfileCreation/BasicInformationScreen';
-import { FaithProfileScreen } from '../screens/ProfileCreation/FaithProfileScreen';
-import { PartnerPreferencesScreen } from '../screens/ProfileCreation/PartnerPreferencesScreen';
-import { PersonalDetailsScreen } from '../screens/ProfileCreation/PersonalDetailsScreen';
-import { VerificationUploadScreen } from '../screens/ProfileCreation/VerificationUploadScreen';
-import { VerificationPendingScreen } from '../screens/VerificationPendingScreen';
-import type { ProfileCreationStackParamList } from '../types/navigation.types';
 
 const Stack = createStackNavigator<ProfileCreationStackParamList>();
 

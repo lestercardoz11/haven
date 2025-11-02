@@ -1,17 +1,17 @@
 // src/navigation/MainNavigator.tsx
+import HomeScreen from '@/app/(tabs)';
+import { ChatScreen } from '@/app/screens/ChatScreen';
+import { MatchesScreen } from '@/app/screens/MatchesScreen';
+import { MessagesScreen } from '@/app/screens/MessagesScreen';
+import { ProfileDetailScreen } from '@/app/screens/ProfileDetailScreen';
+import { ProfileScreen } from '@/app/screens/ProfileScreen';
+import { SettingsScreen } from '@/app/screens/SettingsScreen';
+import { useTheme } from '@/context/ThemeContext';
+import type { MainStackParamList } from '@/types/navigation.types';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import HomeScreen from '../(tabs)';
-import { useTheme } from '../context/ThemeContext';
-import { ChatScreen } from '../screens/ChatScreen';
-import { MatchesScreen } from '../screens/MatchesScreen';
-import { MessagesScreen } from '../screens/MessagesScreen';
-import { ProfileDetailScreen } from '../screens/ProfileDetailScreen';
-import { ProfileScreen } from '../screens/ProfileScreen';
-import { SettingsScreen } from '../screens/SettingsScreen';
-import type { MainStackParamList } from '../types/navigation.types';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator<MainStackParamList>();

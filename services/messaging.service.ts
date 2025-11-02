@@ -1,7 +1,7 @@
 // src/services/messaging.service.ts
 
-import { ApiResponse } from '../types/common.types';
-import { Conversation, Message, SendMessageData } from '../types/message.types';
+import { ApiResponse } from '@/types/common.types';
+import { Conversation, Message, SendMessageData } from '@/types/message.types';
 import { supabase } from './supabase';
 
 class MessagingService {

@@ -1,10 +1,10 @@
 // src/services/profile.service.ts
+import { ApiResponse } from '@/types/common.types';
+import { ProfileUpdateData } from '@/types/profile.types';
+import { User, VerificationDocument } from '@/types/user.types';
+import { calculateProfileCompletion } from '@/utils/helpers';
 import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
-import { ApiResponse } from '../types/common.types';
-import { ProfileUpdateData } from '../types/profile.types';
-import { User, VerificationDocument } from '../types/user.types';
-import { calculateProfileCompletion } from '../utils/helpers';
 import { supabase } from './supabase';
 
 class ProfileService {

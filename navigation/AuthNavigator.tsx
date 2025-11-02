@@ -1,10 +1,10 @@
 // src/navigation/AuthNavigator.tsx
+import { RegistrationScreen } from '@/app/screens/RegistrationScreen';
+import { SignInScreen } from '@/app/screens/SignInScreen';
+import { WelcomeScreen } from '@/app/screens/WelcomeScreen';
+import type { AuthStackParamList } from '@/types/navigation.types';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { RegistrationScreen } from '../screens/RegistrationScreen';
-import { SignInScreen } from '../screens/SignInScreen';
-import { WelcomeScreen } from '../screens/WelcomeScreen';
-import type { AuthStackParamList } from '../types/navigation.types';
 
 const Stack = createStackNavigator<AuthStackParamList>();
 

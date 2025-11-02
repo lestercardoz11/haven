@@ -1,4 +1,7 @@
 // src/screens/ProfileCreation/VerificationUploadScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { profileService } from '@/services/profile.service';
 import { Ionicons } from '@expo/vector-icons';
 import * as DocumentPicker from 'expo-document-picker';
 import React, { useState } from 'react';
@@ -11,9 +14,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../hooks/useAuth';
-import { profileService } from '../../services/profile.service';
 
 type DocType =
   | 'government_id_front'

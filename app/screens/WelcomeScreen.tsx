@@ -1,18 +1,15 @@
 // src/screens/WelcomeScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import {
-  Dimensions,
   ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-
-const { height } = Dimensions.get('window');
 
 export const WelcomeScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

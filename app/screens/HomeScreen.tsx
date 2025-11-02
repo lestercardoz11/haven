@@ -1,6 +1,10 @@
 // src/screens/HomeScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { matchingService } from '@/services/matching.service';
+import { Match } from '@/types/matching.types';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -11,10 +15,6 @@ import {
   View,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { matchingService } from '../services/matching.service';
-import { Match } from '../types/matching.types';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
@@ -25,11 +25,7 @@ export const HomeScreen = ({ navigation }: any) => {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    loadMatches();
-  }, []);
-
-  const loadMatches = async () => {
+  const loadMatches = useCallback(async () => {
     try {
       setLoading(true);
       const result = await matchingService.getPotentialMatches(user!.id);
@@ -41,7 +37,11 @@ export const HomeScreen = ({ navigation }: any) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    loadMatches();
+  }, [loadMatches]);
 
   const handlePass = async () => {
     if (matches.length === 0) return;

@@ -1,12 +1,12 @@
 // src/services/auth.service.ts
-import { ApiResponse } from '../types/common.types';
-import type { User } from '../types/user.types';
+import { ApiResponse } from '@/types/common.types';
+import type { User } from '@/types/user.types';
 import {
   calculateAge,
   validateEmail,
   validatePassword,
   validatePhone,
-} from '../utils/validation';
+} from '@/utils/validation';
 import { supabase } from './supabase';
 
 export interface RegisterData {

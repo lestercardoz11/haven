@@ -1,6 +1,6 @@
 // src/hooks/useProfile.ts
-import { useEffect, useState } from 'react';
-import { profileService } from '../services/profile.service';
+import { profileService } from '@/services/profile.service';
+import { useCallback, useEffect, useState } from 'react';
 import type { ProfileStats, User } from '../types';
 
 export const useProfile = (userId: string) => {
@@ -14,9 +14,9 @@ export const useProfile = (userId: string) => {
       loadProfile();
       loadStats();
     }
-  }, [userId]);
+  }, [userId, loadProfile, loadStats]);
 
-  const loadProfile = async () => {
+  const loadProfile = useCallback(async () => {
     try {
       setLoading(true);
       const result = await profileService.getProfile(userId);
@@ -30,14 +30,14 @@ export const useProfile = (userId: string) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
 
-  const loadStats = async () => {
+  const loadStats = useCallback(async () => {
     const result = await profileService.getProfileStats(userId);
     if (result.success && result.data) {
       setStats(result.data);
     }
-  };
+  }, [userId]);
 
   const updateProfile = async (updates: any) => {
     const result = await profileService.updateProfile(userId, updates);

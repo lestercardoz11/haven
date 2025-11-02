@@ -1,4 +1,6 @@
 // src/screens/SignInScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
@@ -13,8 +15,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
 
 export const SignInScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

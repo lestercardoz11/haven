@@ -1,7 +1,7 @@
 // src/hooks/useMatches.ts
-import { useEffect, useState } from 'react';
-import { matchingService } from '../services/matching.service';
-import { Match } from '../types/matching.types';
+import { matchingService } from '@/services/matching.service';
+import { Match } from '@/types/matching.types';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useMatches = (userId: string) => {
   const [matches, setMatches] = useState<Match[]>([]);
@@ -12,9 +12,9 @@ export const useMatches = (userId: string) => {
     if (userId) {
       loadMatches();
     }
-  }, [userId]);
+  }, [userId, loadMatches]);
 
-  const loadMatches = async () => {
+  const loadMatches = useCallback(async () => {
     try {
       setLoading(true);
       const result = await matchingService.getMatches(userId);
@@ -28,7 +28,7 @@ export const useMatches = (userId: string) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
 
   const getPotentialMatches = async (filters?: any) => {
     const result = await matchingService.getPotentialMatches(userId, filters);

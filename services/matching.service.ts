@@ -1,8 +1,8 @@
 // src/services/matching.service.ts
-import { ApiResponse } from '../types/common.types';
-import { Interest, Match, MatchFilters } from '../types/matching.types';
-import { MatchStatus, User } from '../types/user.types';
-import { calculateAge } from '../utils/validation';
+import { ApiResponse } from '@/types/common.types';
+import { Interest, Match, MatchFilters } from '@/types/matching.types';
+import { MatchStatus, User } from '@/types/user.types';
+import { calculateAge } from '@/utils/validation';
 import { supabase } from './supabase';
 
 class MatchingService {
@@ -93,6 +93,8 @@ class MatchingService {
         .select('*')
         .eq('is_active', true)
         .eq('verification_status', 'verified')
+        .eq('is_christian_verified', true)
+        .eq('marriage_intent_verified', true)
         .neq('id', userId)
         .neq('gender', currentUser.gender); // Opposite gender
 
@@ -286,7 +288,7 @@ class MatchingService {
    */
   private async createMatch(user1Id: string, user2Id: string): Promise<void> {
     // Create conversation
-    const { data: conversation } = await supabase
+    await supabase
       .from('conversations')
       .insert({
         participant_1_id: user1Id,

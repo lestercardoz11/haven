@@ -1,6 +1,10 @@
 // src/screens/ChatScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { messagingService } from '@/services/messaging.service';
+import { Message } from '@/types/message.types';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -12,10 +16,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { messagingService } from '../services/messaging.service';
-import { Message } from '../types/message.types';
 
 export const ChatScreen = ({ route, navigation }: any) => {
   const { conversationId, otherUserId } = route.params;
@@ -24,48 +24,37 @@ export const ChatScreen = ({ route, navigation }: any) => {
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [messageText, setMessageText] = useState('');
-  const [loading, setLoading] = useState(true);
   const [otherUser, setOtherUser] = useState<any>(null);
   const flatListRef = useRef<FlatList>(null);
 
+  const loadMessages = useCallback(async () => {
+    const result = await messagingService.getMessages(conversationId);
+    if (result.success && result.data) {
+      setMessages(result.data);
+      if (result.data.length > 0) {
+        setOtherUser(
+          result.data[0].sender?.id === user!.id ? null : result.data[0].sender
+        );
+      }
+    }
+
+    // Mark as read
+    await messagingService.markAsRead(conversationId, user!.id);
+  }, [conversationId, user]);
+
+  const handleNewMessage = useCallback((message: Message) => {
+    setMessages((prev) => [...prev, message]);
+    flatListRef.current?.scrollToEnd({ animated: true });
+  }, []);
+
   useEffect(() => {
     loadMessages();
-    const subscription = messagingService.subscribeToMessages(
-      conversationId,
-      handleNewMessage
-    );
+    messagingService.subscribeToMessages(conversationId, handleNewMessage);
 
     return () => {
       messagingService.unsubscribeFromMessages(conversationId);
     };
-  }, []);
-
-  const loadMessages = async () => {
-    try {
-      setLoading(true);
-      const result = await messagingService.getMessages(conversationId);
-      if (result.success && result.data) {
-        setMessages(result.data);
-        if (result.data.length > 0) {
-          setOtherUser(
-            result.data[0].sender?.id === user!.id
-              ? null
-              : result.data[0].sender
-          );
-        }
-      }
-
-      // Mark as read
-      await messagingService.markAsRead(conversationId, user!.id);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleNewMessage = (message: Message) => {
-    setMessages((prev) => [...prev, message]);
-    flatListRef.current?.scrollToEnd({ animated: true });
-  };
+  }, [conversationId, loadMessages, handleNewMessage]);
 
   const sendMessage = async () => {
     if (!messageText.trim()) return;

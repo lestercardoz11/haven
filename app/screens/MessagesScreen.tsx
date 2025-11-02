@@ -1,6 +1,11 @@
 // src/screens/MessagesScreen.tsx (Simplified version)
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { messagingService } from '@/services/messaging.service';
+import { Conversation } from '@/types/message.types';
+import { formatTimeAgo } from '@/utils/helpers';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -10,11 +15,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { messagingService } from '../services/messaging.service';
-import { Conversation } from '../types/message.types';
-import { formatTimeAgo } from '../utils/helpers';
 
 export const MessagesScreen = ({ navigation }: any) => {
   const { theme } = useTheme();
@@ -23,11 +23,7 @@ export const MessagesScreen = ({ navigation }: any) => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    loadConversations();
-  }, []);
-
-  const loadConversations = async () => {
+  const loadConversations = useCallback(async () => {
     try {
       setLoading(true);
       const result = await messagingService.getConversations(user!.id);
@@ -37,7 +33,11 @@ export const MessagesScreen = ({ navigation }: any) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    loadConversations();
+  }, [loadConversations]);
 
   const renderConversation = ({ item }: { item: Conversation }) => {
     const otherUser = item.other_participant!;
