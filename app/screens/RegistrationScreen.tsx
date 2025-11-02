@@ -1,4 +1,11 @@
 // src/screens/RegistrationScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import {
+  getPasswordStrength,
+  validateEmail,
+  validatePhone,
+} from '@/utils/validation';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
@@ -13,13 +20,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import {
-  getPasswordStrength,
-  validateEmail,
-  validatePhone,
-} from '../utils/validation';
 
 export const RegistrationScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

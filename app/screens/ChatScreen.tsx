@@ -1,4 +1,8 @@
 // src/screens/ChatScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { messagingService } from '@/services/messaging.service';
+import { Message } from '@/types/message.types';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -12,10 +16,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { messagingService } from '../services/messaging.service';
-import { Message } from '../types/message.types';
 
 export const ChatScreen = ({ route, navigation }: any) => {
   const { conversationId, otherUserId } = route.params;
@@ -27,24 +27,13 @@ export const ChatScreen = ({ route, navigation }: any) => {
   const [otherUser, setOtherUser] = useState<any>(null);
   const flatListRef = useRef<FlatList>(null);
 
-  useEffect(() => {
-    loadMessages();
-    messagingService.subscribeToMessages(conversationId, handleNewMessage);
-
-    return () => {
-      messagingService.unsubscribeFromMessages(conversationId);
-    };
-  }, [conversationId, loadMessages, handleNewMessage]);
-
   const loadMessages = useCallback(async () => {
     const result = await messagingService.getMessages(conversationId);
     if (result.success && result.data) {
       setMessages(result.data);
       if (result.data.length > 0) {
         setOtherUser(
-          result.data[0].sender?.id === user!.id
-            ? null
-            : result.data[0].sender
+          result.data[0].sender?.id === user!.id ? null : result.data[0].sender
         );
       }
     }
@@ -57,6 +46,15 @@ export const ChatScreen = ({ route, navigation }: any) => {
     setMessages((prev) => [...prev, message]);
     flatListRef.current?.scrollToEnd({ animated: true });
   }, []);
+
+  useEffect(() => {
+    loadMessages();
+    messagingService.subscribeToMessages(conversationId, handleNewMessage);
+
+    return () => {
+      messagingService.unsubscribeFromMessages(conversationId);
+    };
+  }, [conversationId, loadMessages, handleNewMessage]);
 
   const sendMessage = async () => {
     if (!messageText.trim()) return;

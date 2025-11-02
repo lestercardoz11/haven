@@ -1,7 +1,7 @@
 // src/hooks/useMatches.ts
+import { matchingService } from '@/services/matching.service';
+import { Match } from '@/types/matching.types';
 import { useCallback, useEffect, useState } from 'react';
-import { matchingService } from '../services/matching.service';
-import { Match } from '../types/matching.types';
 
 export const useMatches = (userId: string) => {
   const [matches, setMatches] = useState<Match[]>([]);

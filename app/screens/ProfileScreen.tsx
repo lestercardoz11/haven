@@ -1,4 +1,7 @@
 // src/screens/ProfileScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { useProfile } from '@/hooks/useProfile';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import {
@@ -9,9 +12,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { useProfile } from '../hooks/useProfile';
 
 export const ProfileScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

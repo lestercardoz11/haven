@@ -1,4 +1,5 @@
 // src/screens/OnboardingScreen.tsx (Simple implementation)
+import { useTheme } from '@/context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
@@ -9,7 +10,6 @@ import {
   View,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
-import { useTheme } from '../context/ThemeContext';
 
 const { width } = Dimensions.get('window');
 

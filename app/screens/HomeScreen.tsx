@@ -1,4 +1,8 @@
 // src/screens/HomeScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { matchingService } from '@/services/matching.service';
+import { Match } from '@/types/matching.types';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -11,10 +15,6 @@ import {
   View,
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { matchingService } from '../services/matching.service';
-import { Match } from '../types/matching.types';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
@@ -24,10 +24,6 @@ export const HomeScreen = ({ navigation }: any) => {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    loadMatches();
-  }, [loadMatches]);
 
   const loadMatches = useCallback(async () => {
     try {
@@ -42,6 +38,10 @@ export const HomeScreen = ({ navigation }: any) => {
       setLoading(false);
     }
   }, [user]);
+
+  useEffect(() => {
+    loadMatches();
+  }, [loadMatches]);
 
   const handlePass = async () => {
     if (matches.length === 0) return;

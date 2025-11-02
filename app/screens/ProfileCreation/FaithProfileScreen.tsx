@@ -1,4 +1,12 @@
 // src/screens/ProfileCreation/FaithProfileScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { profileService } from '@/services/profile.service';
+import {
+  CHURCH_ATTENDANCE_FREQUENCY,
+  DENOMINATIONS,
+  MINISTRY_INVOLVEMENT,
+} from '@/utils/constants';
 import { Ionicons } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
@@ -12,14 +20,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../hooks/useAuth';
-import { profileService } from '../../services/profile.service';
-import {
-  CHURCH_ATTENDANCE_FREQUENCY,
-  DENOMINATIONS,
-  MINISTRY_INVOLVEMENT,
-} from '../../utils/constants';
 
 export const FaithProfileScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

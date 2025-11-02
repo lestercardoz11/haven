@@ -1,4 +1,13 @@
 // src/screens/ProfileCreation/PartnerPreferencesScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { profileService } from '@/services/profile.service';
+import {
+  DEALBREAKERS,
+  DENOMINATIONS,
+  MAX_AGE,
+  MIN_AGE,
+} from '@/utils/constants';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
@@ -12,15 +21,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../hooks/useAuth';
-import { profileService } from '../../services/profile.service';
-import {
-  DEALBREAKERS,
-  DENOMINATIONS,
-  MAX_AGE,
-  MIN_AGE,
-} from '../../utils/constants';
 
 export const PartnerPreferencesScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

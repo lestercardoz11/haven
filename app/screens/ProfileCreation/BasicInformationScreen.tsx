@@ -1,4 +1,8 @@
 // src/screens/ProfileCreation/BasicInformationScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { profileService } from '@/services/profile.service';
+import { calculateAge, validateDateOfBirth } from '@/utils/validation';
 import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
@@ -13,10 +17,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../hooks/useAuth';
-import { profileService } from '../../services/profile.service';
-import { calculateAge, validateDateOfBirth } from '../../utils/validation';
 
 export const BasicInformationScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

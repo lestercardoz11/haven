@@ -1,4 +1,7 @@
 // src/screens/SettingsScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { profileService } from '@/services/profile.service';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
@@ -10,9 +13,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { profileService } from '../services/profile.service';
 
 export const SettingsScreen = ({ navigation }: any) => {
   const { theme, themeMode, toggleTheme } = useTheme();

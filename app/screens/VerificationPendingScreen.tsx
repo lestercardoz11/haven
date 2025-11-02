@@ -1,4 +1,6 @@
 // src/screens/VerificationPendingScreen.tsx (already mentioned, creating full version)
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import {
@@ -8,8 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
 
 export const VerificationPendingScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

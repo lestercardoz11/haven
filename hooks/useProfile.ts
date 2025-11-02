@@ -1,6 +1,6 @@
 // src/hooks/useProfile.ts
+import { profileService } from '@/services/profile.service';
 import { useCallback, useEffect, useState } from 'react';
-import { profileService } from '../services/profile.service';
 import type { ProfileStats, User } from '../types';
 
 export const useProfile = (userId: string) => {

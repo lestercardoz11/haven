@@ -1,4 +1,8 @@
 // src/screens/MatchesScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { useMatches } from '@/hooks/useMatches';
+import { Match } from '@/types/matching.types';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
@@ -10,10 +14,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { useMatches } from '../hooks/useMatches';
-import { Match } from '../types/matching.types';
 
 export const MatchesScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

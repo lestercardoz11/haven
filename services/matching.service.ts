@@ -1,8 +1,8 @@
 // src/services/matching.service.ts
-import { ApiResponse } from '../types/common.types';
-import { Interest, Match, MatchFilters } from '../types/matching.types';
-import { MatchStatus, User } from '../types/user.types';
-import { calculateAge } from '../utils/validation';
+import { ApiResponse } from '@/types/common.types';
+import { Interest, Match, MatchFilters } from '@/types/matching.types';
+import { MatchStatus, User } from '@/types/user.types';
+import { calculateAge } from '@/utils/validation';
 import { supabase } from './supabase';
 
 class MatchingService {
@@ -288,8 +288,10 @@ class MatchingService {
    */
   private async createMatch(user1Id: string, user2Id: string): Promise<void> {
     // Create conversation
-    await supabase.from('conversations').insert({
-      participant_1_id: user1Id,
+    await supabase
+      .from('conversations')
+      .insert({
+        participant_1_id: user1Id,
         participant_2_id: user2Id,
       })
       .select()

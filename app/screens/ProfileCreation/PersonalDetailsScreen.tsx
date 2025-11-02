@@ -1,4 +1,16 @@
 // src/screens/ProfileCreation/PersonalDetailsScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { profileService } from '@/services/profile.service';
+import {
+  EDUCATION_LEVELS,
+  HOBBIES,
+  LANGUAGES,
+  MAX_HEIGHT_CM,
+  MIN_HEIGHT_CM,
+} from '@/utils/constants';
+import { cmToFeetInches } from '@/utils/helpers';
+import { validateLength, validateRequired } from '@/utils/validation';
 import { Ionicons } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
@@ -12,18 +24,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../hooks/useAuth';
-import { profileService } from '../../services/profile.service';
-import {
-  EDUCATION_LEVELS,
-  HOBBIES,
-  LANGUAGES,
-  MAX_HEIGHT_CM,
-  MIN_HEIGHT_CM,
-} from '../../utils/constants';
-import { cmToFeetInches } from '../../utils/helpers';
-import { validateLength, validateRequired } from '../../utils/validation';
 
 export const PersonalDetailsScreen = ({ navigation }: any) => {
   const { theme } = useTheme();

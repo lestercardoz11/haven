@@ -1,8 +1,10 @@
 // src/screens/ProfileDetailScreen.tsx
+import { useTheme } from '@/context/ThemeContext';
+import { profileService } from '@/services/profile.service';
+import { User } from '@/types/user.types';
 import { Ionicons } from '@expo/vector-icons';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Dimensions,
   Image,
   ScrollView,
   StyleSheet,
@@ -10,9 +12,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { profileService } from '../services/profile.service';
-import { User } from '../types/user.types';
 
 export const ProfileDetailScreen = ({ route, navigation }: any) => {
   const { userId } = route.params;
@@ -20,14 +19,20 @@ export const ProfileDetailScreen = ({ route, navigation }: any) => {
   const [profile, setProfile] = useState<User | null>(null);
 
   useEffect(() => {
-    loadProfile();
-  }, [loadProfile]);
+    let isMounted = true;
 
-  const loadProfile = useCallback(async () => {
-    const result = await profileService.getProfile(userId);
-    if (result.success && result.data) {
-      setProfile(result.data);
-    }
+    const loadProfile = async () => {
+      const result = await profileService.getProfile(userId);
+      if (isMounted && result.success && result.data) {
+        setProfile(result.data);
+      }
+    };
+
+    loadProfile();
+
+    return () => {
+      isMounted = false;
+    };
   }, [userId]);
 
   if (!profile) return null;

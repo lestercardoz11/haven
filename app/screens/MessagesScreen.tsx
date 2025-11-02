@@ -1,4 +1,9 @@
 // src/screens/MessagesScreen.tsx (Simplified version)
+import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/hooks/useAuth';
+import { messagingService } from '@/services/messaging.service';
+import { Conversation } from '@/types/message.types';
+import { formatTimeAgo } from '@/utils/helpers';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -10,11 +15,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../hooks/useAuth';
-import { messagingService } from '../services/messaging.service';
-import { Conversation } from '../types/message.types';
-import { formatTimeAgo } from '../utils/helpers';
 
 export const MessagesScreen = ({ navigation }: any) => {
   const { theme } = useTheme();
@@ -22,10 +22,6 @@ export const MessagesScreen = ({ navigation }: any) => {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    loadConversations();
-  }, [loadConversations]);
 
   const loadConversations = useCallback(async () => {
     try {
@@ -38,6 +34,10 @@ export const MessagesScreen = ({ navigation }: any) => {
       setLoading(false);
     }
   }, [user]);
+
+  useEffect(() => {
+    loadConversations();
+  }, [loadConversations]);
 
   const renderConversation = ({ item }: { item: Conversation }) => {
     const otherUser = item.other_participant!;
