@@ -1,11 +1,11 @@
 // src/navigation/ProfileCreationNavigator.tsx
-import { OnboardingScreen } from '@/app/screens/OnboardingScreen';
-import { BasicInformationScreen } from '@/app/screens/ProfileCreation/BasicInformationScreen';
-import { FaithProfileScreen } from '@/app/screens/ProfileCreation/FaithProfileScreen';
-import { PartnerPreferencesScreen } from '@/app/screens/ProfileCreation/PartnerPreferencesScreen';
-import { PersonalDetailsScreen } from '@/app/screens/ProfileCreation/PersonalDetailsScreen';
-import { VerificationUploadScreen } from '@/app/screens/ProfileCreation/VerificationUploadScreen';
-import { VerificationPendingScreen } from '@/app/screens/VerificationPendingScreen';
+import { OnboardingScreen } from '@/app/screens/onboarding';
+import { BasicInformationScreen } from '@/app/screens/onboarding/basic-information';
+import { FaithProfileScreen } from '@/app/screens/onboarding/faith-profile';
+import { PartnerPreferencesScreen } from '@/app/screens/onboarding/partner-preferences';
+import { PersonalDetailsScreen } from '@/app/screens/onboarding/personal-details';
+import { VerificationUploadScreen } from '@/app/screens/onboarding/verification-upload';
+import { VerificationPendingScreen } from '@/app/screens/verification-pending';
 import type { ProfileCreationStackParamList } from '@/types/navigation.types';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';

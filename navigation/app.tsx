@@ -2,11 +2,10 @@
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/hooks/useAuth';
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { AuthNavigator } from './AuthNavigator';
-import { MainNavigator } from './MainNavigator';
-import { ProfileCreationNavigator } from './ProfileCreationNavigator';
+import { AuthNavigator } from './auth';
+import { MainNavigator } from './main';
+import { ProfileCreationNavigator } from './profile-creation';
 
 const Stack = createStackNavigator();
 

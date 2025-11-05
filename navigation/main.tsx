@@ -1,11 +1,11 @@
 // src/navigation/MainNavigator.tsx
 import HomeScreen from '@/app/(tabs)';
-import { ChatScreen } from '@/app/screens/ChatScreen';
-import { MatchesScreen } from '@/app/screens/MatchesScreen';
-import { MessagesScreen } from '@/app/screens/MessagesScreen';
-import { ProfileDetailScreen } from '@/app/screens/ProfileDetailScreen';
-import { ProfileScreen } from '@/app/screens/ProfileScreen';
-import { SettingsScreen } from '@/app/screens/SettingsScreen';
+import { ChatScreen } from '@/app/screens/chat';
+import { MatchesScreen } from '@/app/screens/matches';
+import { MessagesScreen } from '@/app/screens/messages';
+import { ProfileScreen } from '@/app/screens/profile';
+import { ProfileDetailScreen } from '@/app/screens/profile-detail';
+import { SettingsScreen } from '@/app/screens/settings';
 import { useTheme } from '@/context/ThemeContext';
 import type { MainStackParamList } from '@/types/navigation.types';
 import { Ionicons } from '@expo/vector-icons';

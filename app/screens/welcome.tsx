@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 
-export const WelcomeScreen = ({ navigation }: any) => {
+export default function WelcomeScreen({ navigation }: any) {
   const { theme } = useTheme();
 
   return (
@@ -85,7 +85,7 @@ export const WelcomeScreen = ({ navigation }: any) => {
       </LinearGradient>
     </ImageBackground>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
