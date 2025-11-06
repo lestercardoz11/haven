@@ -1,3 +1,5 @@
+import { User } from './user.types';
+
 // src/types/common.types.ts
 export interface ApiResponse<T> {
   data?: T;

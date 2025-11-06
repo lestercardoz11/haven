@@ -3,9 +3,9 @@ import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/hooks/useAuth';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ActivityIndicator, View } from 'react-native';
-import { AuthNavigator } from './auth';
-import { MainNavigator } from './main';
-import { ProfileCreationNavigator } from './profile-creation';
+import { AuthNavigator } from './auth-navigation';
+import { MainNavigator } from './main-navigation';
+import { OnboardingNavigator } from './onboarding-navigation';
 
 const Stack = createStackNavigator();
 
@@ -32,10 +32,7 @@ export const AppNavigator = () => {
       {!user ? (
         <Stack.Screen name='Auth' component={AuthNavigator} />
       ) : !user.onboarding_completed ? (
-        <Stack.Screen
-          name='ProfileCreation'
-          component={ProfileCreationNavigator}
-        />
+        <Stack.Screen name='Onboarding' component={OnboardingNavigator} />
       ) : (
         <Stack.Screen name='Main' component={MainNavigator} />
       )}

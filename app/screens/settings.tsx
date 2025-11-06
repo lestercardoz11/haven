@@ -14,7 +14,7 @@ import {
   View,
 } from 'react-native';
 
-export const SettingsScreen = ({ navigation }: any) => {
+export default function SettingsScreen({ navigation }: any) {
   const { theme, themeMode, toggleTheme } = useTheme();
   const { user, signOut } = useAuth();
 
@@ -393,7 +393,7 @@ export const SettingsScreen = ({ navigation }: any) => {
       </ScrollView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

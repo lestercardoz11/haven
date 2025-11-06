@@ -217,7 +217,7 @@ export default function ProfileScreen({ navigation }: any) {
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

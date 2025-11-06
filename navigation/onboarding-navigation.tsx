@@ -1,18 +1,18 @@
 // src/navigation/ProfileCreationNavigator.tsx
-import { OnboardingScreen } from '@/app/screens/onboarding';
-import { BasicInformationScreen } from '@/app/screens/onboarding/basic-information';
-import { FaithProfileScreen } from '@/app/screens/onboarding/faith-profile';
-import { PartnerPreferencesScreen } from '@/app/screens/onboarding/partner-preferences';
-import { PersonalDetailsScreen } from '@/app/screens/onboarding/personal-details';
-import { VerificationUploadScreen } from '@/app/screens/onboarding/verification-upload';
-import { VerificationPendingScreen } from '@/app/screens/verification-pending';
-import type { ProfileCreationStackParamList } from '@/types/navigation.types';
+import OnboardingScreen from '@/app/screens/onboarding/_layout';
+import BasicInformationScreen from '@/app/screens/onboarding/basic-information';
+import FaithProfileScreen from '@/app/screens/onboarding/faith-profile';
+import PartnerPreferencesScreen from '@/app/screens/onboarding/partner-preferences';
+import PersonalDetailsScreen from '@/app/screens/onboarding/personal-details';
+import VerificationUploadScreen from '@/app/screens/onboarding/verification-upload';
+import VerificationPendingScreen from '@/app/screens/verification-pending';
+import type { OnboardingStackParamList } from '@/types/navigation.types';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
-const Stack = createStackNavigator<ProfileCreationStackParamList>();
+const Stack = createStackNavigator<OnboardingStackParamList>();
 
-export const ProfileCreationNavigator = () => {
+export const OnboardingNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
