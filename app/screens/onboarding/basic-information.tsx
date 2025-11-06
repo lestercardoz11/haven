@@ -18,7 +18,7 @@ import {
   View,
 } from 'react-native';
 
-export const BasicInformationScreen = ({ navigation }: any) => {
+export default function BasicInformationScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user, refreshUser } = useAuth();
 

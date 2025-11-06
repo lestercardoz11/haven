@@ -21,7 +21,7 @@ import {
   View,
 } from 'react-native';
 
-export const RegistrationScreen = ({ navigation }: any) => {
+export default function RegistrationScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { signUp } = useAuth();
 

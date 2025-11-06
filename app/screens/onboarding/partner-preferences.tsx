@@ -22,7 +22,7 @@ import {
   View,
 } from 'react-native';
 
-export const PartnerPreferencesScreen = ({ navigation }: any) => {
+export default function PartnerPreferencesScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user, refreshUser } = useAuth();
 

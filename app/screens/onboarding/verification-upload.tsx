@@ -21,7 +21,7 @@ type DocType =
   | 'church_letter'
   | 'baptism_certificate';
 
-export const VerificationUploadScreen = ({ navigation }: any) => {
+export default function VerificationUploadScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user } = useAuth();
 

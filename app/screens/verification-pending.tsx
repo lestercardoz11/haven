@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 
-export const VerificationPendingScreen = ({ navigation }: any) => {
+export default function VerificationPendingScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { refreshUser } = useAuth();
 

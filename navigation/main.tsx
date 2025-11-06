@@ -78,7 +78,7 @@ const TabNavigator = () => {
 export const MainNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='Home' component={TabNavigator} />
+      <Stack.Screen name='Tabs' component={TabNavigator} />
       <Stack.Screen name='Chat' component={ChatScreen} />
       <Stack.Screen name='ProfileDetail' component={ProfileDetailScreen} />
       <Stack.Screen name='Settings' component={SettingsScreen} />

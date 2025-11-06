@@ -16,7 +16,7 @@ import {
   View,
 } from 'react-native';
 
-export const MessagesScreen = ({ navigation }: any) => {
+export default function MessagesScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user } = useAuth();
   const [conversations, setConversations] = useState<Conversation[]>([]);

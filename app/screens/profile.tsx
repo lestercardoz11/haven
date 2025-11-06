@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 
-export const ProfileScreen = ({ navigation }: any) => {
+export default function ProfileScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user } = useAuth();
   const { stats } = useProfile(user!.id);

@@ -16,7 +16,7 @@ import {
   View,
 } from 'react-native';
 
-export const SignInScreen = ({ navigation }: any) => {
+export default function SignInScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { signIn } = useAuth();
 

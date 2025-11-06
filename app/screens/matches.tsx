@@ -15,7 +15,7 @@ import {
   View,
 } from 'react-native';
 
-export const MatchesScreen = ({ navigation }: any) => {
+export default function MatchesScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user } = useAuth();
   const { matches, loading, refreshMatches } = useMatches(user!.id);
