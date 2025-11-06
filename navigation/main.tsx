@@ -1,6 +1,6 @@
 // src/navigation/MainNavigator.tsx
+import { HomeScreen } from '@/app/home';
 import { ChatScreen } from '@/app/screens/chat';
-import { HomeScreen } from '@/app/screens/home';
 import { MatchesScreen } from '@/app/screens/matches';
 import { MessagesScreen } from '@/app/screens/messages';
 import { ProfileScreen } from '@/app/screens/profile';
