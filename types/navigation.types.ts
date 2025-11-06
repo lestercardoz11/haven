@@ -6,7 +6,7 @@ export type AuthStackParamList = {
   Onboarding: undefined;
 };
 
-export type ProfileCreationStackParamList = {
+export type OnboardingStackParamList = {
   BasicInformation: undefined;
   FaithProfile: undefined;
   VerificationUpload: undefined;
@@ -16,7 +16,7 @@ export type ProfileCreationStackParamList = {
 };
 
 export type MainStackParamList = {
-  Home: undefined;
+  Tabs: undefined;
   Matches: undefined;
   Messages: undefined;
   Profile: undefined;

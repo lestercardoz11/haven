@@ -17,7 +17,7 @@ import {
   View,
 } from 'react-native';
 
-export const ChatScreen = ({ route, navigation }: any) => {
+export default function ChatScreen({ route, navigation }: any) {
   const { conversationId, otherUserId } = route.params;
   const { theme } = useTheme();
   const { user } = useAuth();

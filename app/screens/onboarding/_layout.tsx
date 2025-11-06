@@ -34,7 +34,7 @@ const slides = [
   },
 ];
 
-export const OnboardingScreen = ({ navigation }: any) => {
+export default function OnboardingScreen({ navigation }: any) {
   const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
 

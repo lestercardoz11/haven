@@ -21,7 +21,7 @@ import {
   View,
 } from 'react-native';
 
-export const FaithProfileScreen = ({ navigation }: any) => {
+export default function FaithProfileScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user, refreshUser } = useAuth();
 

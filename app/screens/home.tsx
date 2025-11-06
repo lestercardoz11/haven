@@ -18,7 +18,7 @@ import Carousel from 'react-native-reanimated-carousel';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
-export const HomeScreen = ({ navigation }: any) => {
+export default function HomeScreen({ navigation }: any) {
   const { theme } = useTheme();
   const { user } = useAuth();
   const [matches, setMatches] = useState<Match[]>([]);

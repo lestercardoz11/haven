@@ -1,11 +1,11 @@
 // src/navigation/MainNavigator.tsx
-import { HomeScreen } from '@/app/home';
-import { ChatScreen } from '@/app/screens/chat';
-import { MatchesScreen } from '@/app/screens/matches';
-import { MessagesScreen } from '@/app/screens/messages';
-import { ProfileScreen } from '@/app/screens/profile';
-import { ProfileDetailScreen } from '@/app/screens/profile-detail';
-import { SettingsScreen } from '@/app/screens/settings';
+import ChatScreen from '@/app/screens/chat';
+import HomeScreen from '@/app/screens/home';
+import MatchesScreen from '@/app/screens/matches';
+import MessagesScreen from '@/app/screens/messages';
+import ProfileScreen from '@/app/screens/profile';
+import ProfileDetailScreen from '@/app/screens/profile-detail';
+import SettingsScreen from '@/app/screens/settings';
 import { useTheme } from '@/context/ThemeContext';
 import type { MainStackParamList } from '@/types/navigation.types';
 import { Ionicons } from '@expo/vector-icons';
@@ -45,10 +45,10 @@ const TabNavigator = () => {
         tabBarStyle: {
           backgroundColor: theme.colors.background,
           borderTopColor: theme.colors.border,
-          borderTopWidth: 1,
-          paddingBottom: 5,
+          borderTopWidth: 0,
+          paddingBottom: 25,
           paddingTop: 5,
-          height: 60,
+          height: 80,
         },
       })}>
       <Tab.Screen
@@ -78,7 +78,7 @@ const TabNavigator = () => {
 export const MainNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='Home' component={TabNavigator} />
+      <Stack.Screen name='Tabs' component={TabNavigator} />
       <Stack.Screen name='Chat' component={ChatScreen} />
       <Stack.Screen name='ProfileDetail' component={ProfileDetailScreen} />
       <Stack.Screen name='Settings' component={SettingsScreen} />
