@@ -132,6 +132,34 @@ class MatchingService {
         return { success: false, error: error.message };
       }
 
+      // Apply location filter
+      if (filters?.location) {
+        const [lat, lon] = filters.location.split(',').map(parseFloat);
+        const radius = filters.radius_km || currentUser.preferred_radius_km || 50;
+
+        const distance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+          const R = 6371; // Radius of the earth in km
+          const dLat = (lat2 - lat1) * (Math.PI / 180);
+          const dLon = (lon2 - lon1) * (Math.PI / 180);
+          const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos((lat1 * Math.PI) / 180) *
+              Math.cos((lat2 * Math.PI) / 180) *
+              Math.sin(dLon / 2) *
+              Math.sin(dLon / 2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          return R * c;
+        };
+
+        potentialMatches = potentialMatches?.filter((user) => {
+          if (!user.current_location) return false;
+          const [userLat, userLon] = user.current_location
+            .split(',')
+            .map(parseFloat);
+          return distance(lat, lon, userLat, userLon) <= radius;
+        });
+      }
+
       // Get existing matches to exclude
       const { data: existingMatches } = await supabase
         .from('matches')
